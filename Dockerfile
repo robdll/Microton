@@ -1,11 +1,8 @@
-FROM node:lts as builder
-RUN mkdir /server && chown node:node /server
+FROM node:lts as local
+ARG WORKDIR=/home/node/server
+
+RUN mkdir $WORKDIR && chown node:node $WORKDIR
 USER node
-WORKDIR /server
+WORKDIR $WORKDIR
 COPY --chown=node:node . .
 RUN yarn
-
-FROM node:alpine as image
-COPY --from=builder /server .
-USER node
-EXPOSE 3000
