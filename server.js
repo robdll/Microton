@@ -1,10 +1,14 @@
+const Redis = require("ioredis");
 const fastify = require('fastify')({
   logger: true
 })
 
-// Declare a route
-fastify.get('/', function (request, reply) {
-  reply.send({ hello: 'world' })
+const redis = new Redis(process.env.REDIS_URI);
+redis.set("foo", "bar");
+
+fastify.get('/', async ( _, reply) => {
+  const foo = await redis.get("foo")
+  reply.send({ hello: `${foo}`})
 })
 
 // Run the server!

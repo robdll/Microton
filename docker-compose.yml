@@ -11,6 +11,10 @@ services:
       dockerfile: Dockerfile
     container_name: server
     command: ${DOCKER_COMMAND:-yarn start}
+    environment:
+      - REDIS_URI=redis://user:redis_password@redis:6380
+    depends_on:
+      - redis
     ports:
       - "3000:3000"
     expose:
@@ -18,3 +22,13 @@ services:
     volumes:
       - .:/home/node/server/
       - node_modules:/home/node/server/node_modules/
+
+  redis:
+    image: bitnami/redis:latest
+    container_name: redis
+    hostname: redis
+    ports:
+      - "6380:6380"
+    environment:
+      - REDIS_PASSWORD=redis_password
+      - REDIS_PORT=6380
