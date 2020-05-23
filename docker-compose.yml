@@ -1,15 +1,20 @@
 version: "3.7"
 
-services:
+volumes:
+  node_modules:
 
+services:
   server:
     image: scheleton:latest
     build:
       context: .
       dockerfile: Dockerfile
     container_name: server
-    command: yarn start
+    command: ${DOCKER_COMMAND:-yarn start}
     ports:
       - "3000:3000"
     expose:
       - "3000"
+    volumes:
+      - .:/home/node/server/
+      - node_modules:/home/node/server/node_modules/
