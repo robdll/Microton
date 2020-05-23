@@ -1,0 +1,15 @@
+version: "3.7"
+
+services:
+
+  server:
+    image: scheleton:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: server
+    command: yarn start
+    ports:
+      - "3000:3000"
+    expose:
+      - "3000"
