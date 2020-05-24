@@ -4,13 +4,22 @@ volumes:
   node_modules:
 
 services:
-  server:
-    image: scheleton:latest
+  builder:
+    image: builder:latest
     build:
       context: .
       dockerfile: Dockerfile
+    volumes:
+      - .:/home/node/root/
+      - node_modules:/home/node/root/node_modules/
+
+  server:
+    image: server:latest
+    build:
+      context: .
+      dockerfile: packages/server/Dockerfile
     container_name: server
-    command: ${DOCKER_COMMAND:-yarn start}
+    command: ${DOCKER_COMMAND:-yarn server}
     environment:
       - REDIS_URI=redis://user:redis_password@redis:6380
     depends_on:
@@ -20,8 +29,23 @@ services:
     expose:
       - "3000"
     volumes:
-      - .:/home/node/server/
+      - ./packages/server:/home/node/server/
       - node_modules:/home/node/server/node_modules/
+
+  client:
+    image: client:latest
+    build:
+      context: .
+      dockerfile: packages/client/Dockerfile
+    container_name: client
+    command: ${DOCKER_COMMAND:-yarn client}
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+    volumes:
+      - ./packages/client:/home/node/client/
+      - node_modules:/home/node/client/node_modules/
 
   redis:
     image: bitnami/redis:latest
