@@ -8,8 +8,9 @@
   ],
   "scripts": {
     "clean": " ./scripts/clean.sh",
-    "start": "learn run start",
-    "dev": "learn run dev"
+    "build": "lerna run build",
+    "start": "lerna run start",
+    "dev": "lerna run dev"
   },
   "devDependencies": {
     "lerna": "^3.21.0"
