@@ -1,17 +1,20 @@
 {
-  "name": "scheleton",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
+  "name": "root",
+  "private": true,
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "start": "node server.js",
-    "start:dev": "nodemon --quiet server.js"
-  },
-  "dependencies": {
-    "fastify": "^2.14.1",
-    "ioredis": "^4.17.1"
+    "clean": " ./scripts/clean.sh",
+    "build": "lerna run build",
+    "start": "lerna run start",
+    "server": "lerna run server",
+    "client": "lerna run client"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
-  }
+    "lerna": "3.21.0"
+  },
+  "dependencies": {}
 }
