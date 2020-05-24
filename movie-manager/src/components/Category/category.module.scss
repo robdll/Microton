@@ -42,6 +42,7 @@
     box-sizing: border-box;
     flex-shrink: 0;
     cursor: pointer;
+    border: 1px dashed lightgray;
 }
 
 .movieSelected{
@@ -86,3 +87,18 @@
     grid-column: 2 / 3;
 }
 
+
+@media only screen and (max-width: 600px) {
+    .section {
+        grid-template: 60px auto auto / 5% 90% 5%;
+    }
+
+    .header {
+        font-size: 1.1rem;
+    }
+    .movieContainer {
+        padding: 0px;
+        width: 30%;
+    }
+
+}
