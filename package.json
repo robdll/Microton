@@ -10,7 +10,7 @@
     "clean": " ./scripts/clean.sh",
     "build": "lerna run build",
     "start": "lerna run start",
-    "dev": "lerna run dev"
+    "dev": "lerna run dev --parallel"
   },
   "devDependencies": {
     "lerna": "^3.21.0"
