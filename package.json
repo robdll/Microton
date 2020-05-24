@@ -14,7 +14,7 @@
     "client": "lerna run client"
   },
   "devDependencies": {
-    "lerna": "^3.21.0"
+    "lerna": "3.21.0"
   },
   "dependencies": {}
 }
