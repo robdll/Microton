@@ -91,9 +91,10 @@ export function addToWatchStart(movie) {
   };
 }
 
-export function addToWatchSuccess() {
+export function addToWatchSuccess(movie) {
   return {
       type: MOVIE_ADD_TO_WATCH_SUCCESS,
+      payload: movie
   };
 }
 

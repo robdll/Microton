@@ -14,7 +14,7 @@ import style from "./category.module.scss";
 const Category = function(props) {
 
   const categoryName = props.status.name;
-  const isSeen = categoryName !== 'Watch List';
+  const isSeen = categoryName === 'Favorites';
   const header = (
     <header className={`${style.header} ${isSeen ? style.seenHeader : ''}`}>
       <span className={`${style.headerSpan} ${isSeen ? style.seenSpan : ''}`} />

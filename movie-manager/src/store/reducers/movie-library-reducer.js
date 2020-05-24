@@ -58,6 +58,15 @@ export default function reducer(state = initialState, action = {}) {
         return newState;
       }
       case MOVIE_ADD_TO_WATCH_SUCCESS: {
+        let alreadyIn = false;
+        newState.userMovies.forEach( m => {
+          if( action.payload.id === m.id) {
+            alreadyIn = true;
+          }
+        })
+        if(!alreadyIn) {
+          newState.userMovies.push(action.payload)
+        }
         return newState;
       }
       case MOVIE_ADD_TO_WATCH_FAILURE: {

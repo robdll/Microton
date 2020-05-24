@@ -94,13 +94,13 @@ async function fetchCovers(dispatch, movies) {
 
 export function addToLibrary(movie) {
     return async dispatch => {
-        return dispatch(addToWatchSuccess( {...movie, isFetchinCover: true })) 
+        return dispatch(addToWatchSuccess( {...movie, isFetchinCover: false })) 
     } 
 }
 
 
 export function addToFavorites(movie) {
     return async dispatch => {
-        return dispatch(addToFavoritesSucces( {...movie, isFetchinCover: true })) 
+        return dispatch(addToFavoritesSucces( {...movie, isFetchinCover: false })) 
     } 
 }
