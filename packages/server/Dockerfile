@@ -1,8 +1,9 @@
 FROM node:lts as server
-ARG WORKDIR=/home/node/server
+ARG PROJECT_ROOT=/home/node/microton
 
-RUN mkdir $WORKDIR && chown node:node $WORKDIR
+RUN mkdir $PROJECT_ROOT && chown node:node $PROJECT_ROOT
 USER node
-WORKDIR $WORKDIR
-COPY --from=builder --chown=node:node /home/node/root/packages/server .
+WORKDIR $PROJECT_ROOT
+COPY --from=builder --chown=node:node $PROJECT_ROOT .
+WORKDIR $PROJECT_ROOT/packages/server
 EXPOSE 3000

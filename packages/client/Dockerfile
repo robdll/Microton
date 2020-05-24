@@ -1,9 +1,10 @@
 FROM node:lts as client
-ARG WORKDIR=/home/node/client
+ARG PROJECT_ROOT=/home/node/microton
 
-RUN mkdir $WORKDIR && chown node:node $WORKDIR
+RUN mkdir $PROJECT_ROOT && chown node:node $PROJECT_ROOT
 USER node
-WORKDIR $WORKDIR
-COPY --from=builder --chown=node:node /home/node/root/packages/client .
+WORKDIR $PROJECT_ROOT
+COPY --from=builder --chown=node:node $PROJECT_ROOT .
+WORKDIR $PROJECT_ROOT/packages/client
 EXPOSE 8080
 

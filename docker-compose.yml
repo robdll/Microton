@@ -10,8 +10,8 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - .:/home/node/root/
-      - node_modules:/home/node/root/node_modules/
+      - .:/home/node/microton/
+      - node_modules:/home/node/microton/node_modules/
 
   server:
     image: server:latest
@@ -19,7 +19,7 @@ services:
       context: .
       dockerfile: packages/server/Dockerfile
     container_name: server
-    command: ${DOCKER_COMMAND:-yarn server}
+    command: ${DOCKER_COMMAND:-yarn dev}
     environment:
       - REDIS_URI=redis://user:redis_password@redis:6380
     depends_on:
@@ -29,8 +29,8 @@ services:
     expose:
       - "3000"
     volumes:
-      - ./packages/server:/home/node/server/
-      - node_modules:/home/node/server/node_modules/
+      - ./packages/server:/home/node/microton/packages/server/
+      - node_modules:/home/node/microton/packages/server/node_modules/
 
   client:
     image: client:latest
@@ -38,14 +38,14 @@ services:
       context: .
       dockerfile: packages/client/Dockerfile
     container_name: client
-    command: ${DOCKER_COMMAND:-yarn client}
+    command: ${DOCKER_COMMAND:-yarn dev}
     ports:
       - "8080:8080"
     expose:
       - "8080"
     volumes:
-      - ./packages/client:/home/node/client/
-      - node_modules:/home/node/client/node_modules/
+      - ./packages/client:/home/node/microton/packages/client/
+      - node_modules:/home/node/microton/packages/client/node_modules/
 
   redis:
     image: bitnami/redis:latest
