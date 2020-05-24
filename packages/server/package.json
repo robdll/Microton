@@ -1,0 +1,17 @@
+{
+  "name": "scheleton",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server.js",
+    "start:dev": "nodemon --quiet server.js"
+  },
+  "dependencies": {
+    "fastify": "2.14.1",
+    "ioredis": "4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.4"
+  }
+}
