@@ -32,6 +32,7 @@ const Search = function(props) {
 
   const suggestionActions = {
     addToLibrary: props.actions.addToLibrary,
+    addToLibraryFav: props.actions.addToFavorites,
   }
   
   const suggestions = props.status.fetched.map((movie) => (

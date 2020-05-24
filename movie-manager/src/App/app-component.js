@@ -15,16 +15,9 @@ import style from "./app.module.scss";
 /* Component implementation */
 const App = (props) => {
   
-  // useEffect( () => {
-    //   if (props.auth) {
-    //     props.getAllMovies()
-    //   }
-    // },
-    // [props.auth]
-  // );
-
   const searchActions = {
     addToLibrary: props.addToLibrary,
+    addToFavorites: props.addToFavorites,
     searchMovies: props.searchMovies,
     clearSearch: props.searchClear
   }
@@ -33,29 +26,22 @@ const App = (props) => {
 
   const search = <Search status={props.search} actions={searchActions}/>
 
-  const categoryActions = {
-    addToLibrary: props.addToLibrary,
-    selectMovie: props.selectMovie,
-    movieSelectionClear: props.movieSelectionClear,
-    updateMovie: props.updateMovie,
-    switchLibrary: props.switchLibrary,
-    deleteMovie: props.deleteMovie
-  }
-  let toWatchCategories, seenCategories;
+  let toWatchCategories, favCategories;
   const spacer = <span className={style.spacer}></span>;
+
   if(props.category.userMovies.length) {
-    const toWatch = {}
-    toWatch.name = `Favorites`;
-    toWatch.list = props.category.userMovies.filter( m => !m.watched);
-    toWatch.selection =  props.category.selection;
-    toWatchCategories = <Category status={toWatch} actions={categoryActions} />;
     const watched = {}
     watched.name = `Watch List`;
-    watched.list = props.category.userMovies.filter( m => m.watched);
-    watched.selection =  props.category.selection;
-    seenCategories = <Category status={watched} actions={categoryActions} />;
+    watched.list = props.category.userMovies;
+    toWatchCategories = <Category status={watched}  />;
   }
 
+  if(props.category.userMoviesFav.length) {
+    const toWatch = {}
+    toWatch.name = `Favorites`;
+    toWatch.list = props.category.userMoviesFav;
+    favCategories = <Category status={toWatch} />;
+  }
 
   return (
     <>
@@ -73,7 +59,7 @@ const App = (props) => {
       
       <main className={style.main}>
         {toWatchCategories}
-        {seenCategories}
+        {favCategories}
         {spacer}
       </main>
 

@@ -21,9 +21,10 @@ const Suggestion = function(props) {
     </div>;
 
   const year = movie.year ? `(${movie.year})` : "";
-  const { addToLibrary } = props.actions;
+  const { addToLibrary, addToLibraryFav } = props.actions;
   const starImg = "./img/star.png";
-  
+  const eyeImg = "./svg/eye.svg";
+  console.log(addToLibrary)
 
   return (
     <article className={style.suggestion}>
@@ -31,8 +32,8 @@ const Suggestion = function(props) {
       <p className={style.title}>
         {movie.title} <span>{year}</span>
       </p>
-      <div className={`${style.icon} ${style.unseen}`}> <img className={style.star} onClick={ () => addToLibrary( { ...movie, watched: !!props.seen }) } src={starImg} alt="star favorites" /> </div>
-      <div className={`${style.icon} ${style.seen}`}> <Eye seen action={addToLibrary} movie={ { movie_id: props.movie.id, watched: true } } /> </div>
+      <div className={`${style.icon} ${style.unseen}`}> <img className={style.star} onClick={ () => addToLibraryFav( { ...movie, watched: !!props.seen }) } src={starImg} alt="star favorites" /> </div>
+      <div className={`${style.icon} ${style.seen}`}> <img className={style.star} onClick={ () => addToLibrary( { ...movie, watched: !!props.seen }) } src={eyeImg} alt="eye icon" /> </div>
     </article>
   );
 };

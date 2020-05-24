@@ -5,8 +5,6 @@ import PropTypes from "prop-types";
 /* Reusable components */
 import MovieCard from "../MovieCard/movie-card-component";
 
-/* Children components */
-
 /* Style */
 import style from "./category.module.scss";
 
@@ -24,14 +22,8 @@ const Category = function(props) {
 
 
   const movies = props.status.list.map((movie) => {
-    const movieSelected = props.status.selection && movie.id === props.status.selection.id ? style.movieSelected : ''
     return (  
-      <div className={`${style.movieContainer} ${movieSelected}`} key={movie.id || movie.movie_id} 
-           onClick={()=> {
-              const selection = props.status.selection && props.status.selection.id === movie.id ?
-                undefined : { ...movie, category: props.categoryName };
-              props.actions.selectMovie(selection)
-           }}>
+      <div className={`${style.movieContainer}`} key={movie.id || movie.movie_id} >
         <MovieCard movie={movie} />
       </div>
     );
