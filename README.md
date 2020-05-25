@@ -21,3 +21,4 @@ Clone the repository by running `git clone git@github.com:koop4/microservice_mov
 
 1. Install dependencies `yarn && yarn build`
 2. Start containers with `docker-compose up`
+3. open your browser on `localhost:8080` to see the client and to `localhost:3000` to see the server
