@@ -1,8 +1,8 @@
 FROM node:lts as builder
-ARG WORKDIR=/home/node/root
+ARG PROJECT_ROOT=/home/node/microton
 
-RUN mkdir $WORKDIR && chown node:node $WORKDIR
+RUN mkdir $PROJECT_ROOT && chown node:node $PROJECT_ROOT
 USER node
-WORKDIR $WORKDIR
+WORKDIR $PROJECT_ROOT
 COPY --chown=node:node . .
 RUN yarn && yarn build

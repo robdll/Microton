@@ -1,5 +1,5 @@
 {
-  "name": "root",
+  "name": "microton",
   "private": true,
   "npmClient": "yarn",
   "useWorkspaces": true,
@@ -10,8 +10,7 @@
     "clean": " ./scripts/clean.sh",
     "build": "lerna run build",
     "start": "lerna run start",
-    "server": "lerna run server",
-    "client": "lerna run client"
+    "dev": "lerna run dev --parallel"
   },
   "devDependencies": {
     "lerna": "3.21.0"
