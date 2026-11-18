@@ -1,5 +1,5 @@
 const path = require('path');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
@@ -7,9 +7,11 @@ module.exports = merge(common, {
   devtool: 'inline-source-map',
   devServer: {
     historyApiFallback: true,
-    contentBase: path.join(__dirname, "dist"),
+    static: {
+      directory: path.join(__dirname, 'dist'),
+    },
     compress: true,
     port: 8080,
-    host: "0.0.0.0",
+    host: '0.0.0.0',
   },
 });
