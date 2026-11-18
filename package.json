@@ -11,7 +11,7 @@
     "dev": "concurrently -n server,client -c blue,green \"yarn workspace server dev\" \"yarn workspace client dev\""
   },
   "devDependencies": {
-    "concurrently": "^9.1.2"
+    "concurrently": "^10.0.7"
   },
   "resolutions": {
     "**/serialize-javascript": "^6.0.2",
